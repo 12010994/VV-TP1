@@ -37,19 +37,8 @@ local.properties
 .target
 # TeXlipse plugin
 .texlipse
+#IntelliJ
+.idea/
 .gitignore~
-
-
-# Specific to Project
-data/
-run.sh
-run-hsqldb-server.sh
-run-hsqldb-server.sh~
-show-hsqldb.sh
-show-hsqldb.sh~
-TAA-TP1.vpp
-TAA-TP1.vpp~
-TAA-TP1.vpp~1
-TAA-TP1.vpp.working
 
 
