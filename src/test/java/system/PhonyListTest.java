@@ -25,17 +25,18 @@ public class PhonyListTest {
         list = new PhonyList<Integer>();
     }
 
-//tested:
-
-    //clear
-    //indexOf
-
-//to test:
-    //get
+    //clear :OK
+    //indexOf :OK
+    //get :OK
     //set
     //add
+    //remove
     //fastRemove
-
+    //addAll
+    //removeRange
+    //rangeCheck
+    //rangeCheckForAdd
+    //removeAll
 
     /**
      * Tests the "get" method with an one element list.
