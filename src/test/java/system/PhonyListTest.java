@@ -29,17 +29,19 @@ public class PhonyListTest {
     //indexOf :OK
     //get :OK
     //set
-    //add
+    //add : doing didi
     //remove
     //fastRemove
     //addAll
-    //removeRange
+    //empty : doing didi
+    // removeRange
     //rangeCheck
     //rangeCheckForAdd
     //removeAll
 
+
     /**
-     * Tests the "get" method with an one element list.
+     * Tests the "get" method with a one element list.
      *
      * @see PhonyList#get(int)
      * @type Functional
@@ -83,7 +85,25 @@ public class PhonyListTest {
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void get_EmptyListTest(){
-        assertEquals( null ,list.get(0).toString());
+        assertEquals( null, list.get(0).toString());
+    }
+
+    /**
+     * Tests the "set" method with a one element list.
+     *
+     * @see PhonyList#set(int, Object)
+     * @type Functional
+     * @input [0] o=0
+     * @oracle
+     * @passed no
+     */
+    @Test
+    public void set_OneElementListTest(){
+        Integer entier = new Integer(0);
+        list.add(entier);
+        assertEquals("0", list.get(0).toString());
+        list.set(0,new Integer(1));
+        assertEquals("1", list.get(0).toString());
     }
 
 }
