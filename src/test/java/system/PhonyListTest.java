@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -47,7 +48,7 @@ public class PhonyListTest {
     removeRange
     rangeCheck
     rangeCheckForAdd
-    removeAll
+    removeAll : Doing - Bug: not fixed
 
     */
 
@@ -146,7 +147,7 @@ public class PhonyListTest {
      * @type Functional
      * @input [0] o=0
      * @oracle Must raise an IndexOutOfBoundsException
-     * @passed True
+     * @passed Yes
      * @see PhonyList#set(int, Object)
      */
     @Test(expected = IndexOutOfBoundsException.class)
@@ -284,6 +285,36 @@ public class PhonyListTest {
 
     }
 
+    /**
+     * Tests the "removeAll" method
+     *
+     * @type Functional
+     * @input [54, 93, 16, null, 17, null, 89, 22, 36, 30] & [1,93,22,30]
+     * @oracle the obtained list must be empty
+     * @passed No
+     * @see PhonyList#removeAll(java.util.Collection)
+     */
+    @Test
+    public void removeAll_Test() {
+        PhonyList<Integer> listToRemove = list(1, 93, 22, 30);
+        list = list(54, 93, 16, null, 17, null, 89, 22, 36, 30);
+        PhonyList<Integer> listOracle = list(54, 16, null, 17, null, 89, 36);
+
+        int size = list.size();
+        list.removeAll(listToRemove);
+        int newSize = list.size();
+
+        System.out.println(list.toString());
+
+        for(Object elemList: list){
+            if (elemList!=null) {
+                for(Integer elemDeleted: listToRemove){
+                    assertNotEquals(elemList.toString(), elemDeleted.toString() );
+                }
+            }
+        }
+        assertEquals(listOracle.size(),size-newSize);
+    }
 
 
 }
