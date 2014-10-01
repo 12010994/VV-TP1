@@ -177,18 +177,25 @@ public class PhonyListTest {
      * Tests the "addAll" method, with an insertion of a list in a list
      *
      * @type Functional
-     * @input [54,93,16,null,null,null,89,22,36,30] & [1,2,3]
-     * @oracle the obtained new list ...TODO
+     * @input [54,93,16,null,17,null,89,22,36,30] & [1,2,3]
+     * @oracle the obtained new list must be the "listOracle" list
      * @passed Yes
      * @see PhonyList#addAll(int, java.util.Collection)
      */
     @Test
     public void addAll_putElementListTest() {
         PhonyList<Integer> listToAdd = list(1, 2, 3);
-        list = list(54, 93, 16, null, null, null, 89, 22, 36, 30);
-        PhonyList<Integer> listOracle = list(54, 93, 16, 1, 2, 3, 89, 22, 36, 30);
+        list = list(54, 93, 16, null, 17, null, 89, 22, 36, 30);
+        PhonyList<Integer> listOracle = list(54, 93, 16, 1, 2, 3, null, 17, null, 89, 22, 36, 30);
         int size = list.size();
         list.addAll(3, listToAdd);
+        int i=0;
+        for(Object o: list){
+            if (o!=null) {
+                assertEquals(o.toString(), listOracle.get(i).toString());
+            }
+            i++;
+        }
 
         //TODO verify with oracle
         assertEquals("1", list.get(3).toString());
