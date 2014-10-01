@@ -44,7 +44,7 @@ public class PhonyListTest {
     removeRange
     rangeCheck
     rangeCheckForAdd
-    clear : OK
+    removeAll
 
     */
 
@@ -223,24 +223,5 @@ public class PhonyListTest {
         assertFalse(list.isEmpty());
     }
 
-    /**
-     * Test method for removeAll
-     *
-     * @see system.PhonyList#clear()
-     */
-    @Test
-    public void clear_ListTest() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.clear();
-        assertEquals(0, list.size());
-    }
 
-    @Test
-    public void clear_Test() {
-        list.clear();
-        assertEquals(0, list.size());
-    }
 }
