@@ -39,7 +39,7 @@ local.properties
 .texlipse
 #IntelliJ
 .idea/
-
+.idea/workspace.xml
 .gitignore~
 
 
