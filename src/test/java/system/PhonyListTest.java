@@ -225,8 +225,8 @@ public class PhonyListTest {
     }
 
     /**
-     * Test method for contains
-     * @see system.PhonyList#contains(Object
+     * Test the "contains" method
+     * @see system.PhonyList#contains(Object)
      * @type Functional
      * @passed Yes
      */
