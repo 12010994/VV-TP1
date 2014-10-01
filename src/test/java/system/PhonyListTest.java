@@ -45,6 +45,7 @@ public class PhonyListTest {
     remove : doing
     fastRemove : doing
     contains : OK
+    size : OK
     removeRange
     rangeCheck
     rangeCheckForAdd
@@ -314,6 +315,23 @@ public class PhonyListTest {
             }
         }
         assertEquals(listOracle.size(),size-newSize);
+    }
+
+   /**
+     * Test the size of the list before and after adds
+     * @see system.PhonyList#size()
+     * @type Functional
+     * @oracle Size equals zero before adds, and 3 after
+     * @passed Yes
+     */
+    @Test
+    public void testSize() {
+        assertEquals(list.size(), 0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(list.size(), 3);
+
     }
 
 
