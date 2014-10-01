@@ -174,6 +174,25 @@ public class PhonyListTest {
         assertEquals(size, list.size());
     }
 
+    /**
+     * Tests the "addAll" method, ...
+     *
+     * @type Functional
+     * @input
+     * @oracle
+     * @passed Yes
+     * @see PhonyList#addAll(int, java.util.Collection)
+     */
+    @Test
+    public void addAll_putElementInEmptyListTest() {
+        PhonyList<Integer> listToAdd = list(1, 2, 3);
+        list.addAll(0, listToAdd);
+        //TODO verify with oracle
+        assertEquals("1", list.get(0).toString());
+        assertEquals("2", list.get(1).toString());
+        assertEquals("3", list.get(2).toString());
+    }
+
 
     /**
      * Tests the "isEmpty" method with an empty list.
