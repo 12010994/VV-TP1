@@ -3,6 +3,8 @@ package system;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class PhonyListTest {
@@ -153,12 +155,31 @@ public class PhonyListTest {
     }
 
     /**
+     * Tests the "addAll" method, with an insertion of a list in an empty list
+     *
+     * @type Functional
+     * @input [1,2,3] o=0,1,2
+     * @oracle the obtained list must be the included list
+     * @passed Yes
+     * @see PhonyList#addAll(int, java.util.Collection)
+     */
+    @Test
+    public void addAll_putElementInEmptyListTest() {
+        PhonyList<Integer> listToAdd = list(1, 2, 3);
+        list.addAll(0, listToAdd);
+        assertEquals("1", list.get(0).toString());
+        assertEquals("2", list.get(1).toString());
+        assertEquals("3", list.get(2).toString());
+        assertEquals(listToAdd.size(),list.size());
+    }
+
+    /**
      * Tests the "addAll" method, with an insertion of a list in a list
      *
      * @type Functional
-     * @input [0..10]
-     * @oracle the obtained new list should see all it null elements replaced by the elements of the inserted list
-     * @passed No
+     * @input [54,93,16,null,null,null,89,22,36,30] & [1,2,3]
+     * @oracle the obtained new list ...TODO
+     * @passed Yes
      * @see PhonyList#addAll(int, java.util.Collection)
      */
     @Test
@@ -168,30 +189,12 @@ public class PhonyListTest {
         PhonyList<Integer> listOracle = list(54, 93, 16, 1, 2, 3, 89, 22, 36, 30);
         int size = list.size();
         list.addAll(3, listToAdd);
+
         //TODO verify with oracle
         assertEquals("1", list.get(3).toString());
         assertEquals("2", list.get(4).toString());
         assertEquals("3", list.get(5).toString());
-        assertEquals(size, list.size());
-    }
-
-    /**
-     * Tests the "addAll" method, ...
-     *
-     * @type Functional
-     * @input
-     * @oracle
-     * @passed Yes
-     * @see PhonyList#addAll(int, java.util.Collection)
-     */
-    @Test
-    public void addAll_putElementInEmptyListTest() {
-        PhonyList<Integer> listToAdd = list(1, 2, 3);
-        list.addAll(0, listToAdd);
-        //TODO verify with oracle
-        assertEquals("1", list.get(0).toString());
-        assertEquals("2", list.get(1).toString());
-        assertEquals("3", list.get(2).toString());
+        assertEquals(size+listToAdd.size(),list.size());
     }
 
 
