@@ -121,7 +121,7 @@ public class PhonyListTest {
      * @type Functional
      * @input [0..50] o=0,25,50
      * @oracle The obtained list must be the same list, with all values incremented by one
-     * @passed No
+     * @passed Yes
      * @see PhonyList#set(int, Object)
      */
     @Test
@@ -132,8 +132,8 @@ public class PhonyListTest {
             list.set(i, new Integer(i + 1));
         }
         assertEquals("1", list.get(0).toString());
-        assertEquals("26", list.get(25).toString());
-        assertEquals("51", list.get(50).toString());
+        assertEquals("25", list.get(24).toString());
+        assertEquals("50", list.get(49).toString());
         assertEquals(50, list.size());
     }
 
