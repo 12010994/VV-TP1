@@ -47,6 +47,35 @@ public class PhonyListTest {
     //rangeCheckForAdd
     //removeAll
 
+    /**
+     * Tests the "isEmpty" method with an empty list.
+     *
+     * @see PhonyList#isEmpty()
+     * @type Functional
+     * @input []
+     * @oracle It must return true.
+     * @passed Yes
+     */
+    @Test
+    public void test_isEmptyTrue(){
+        assertTrue(list.isEmpty());
+    }
+
+    /**
+     * Tests the "isEmpty" method with a non-empty list.
+     *
+     * @see PhonyList#isEmpty()
+     * @type Functional
+     * @input [1]
+     * @oracle It must return false.
+     * @passed Yes
+     */
+    @Test
+    public void test_isEmptyFalse(){
+        list.add(1);
+        assertFalse(list.isEmpty());
+    }
+
 
     /**
      * Tests the "get" method with a one element list.
