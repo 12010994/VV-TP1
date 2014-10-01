@@ -41,6 +41,7 @@ public class PhonyListTest {
     addAll : doing vic
     remove : doing
     fastRemove : doing
+    contains : OK
     removeRange
     rangeCheck
     rangeCheckForAdd
@@ -222,6 +223,22 @@ public class PhonyListTest {
         list.add(1);
         assertFalse(list.isEmpty());
     }
+
+    /**
+     * Test method for contains
+     * @see system.PhonyList#contains(Object
+     * @type Functional
+     * @passed Yes
+     */
+    @Test
+    public void contains_ObjectTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertTrue(list.contains(2));
+        assertFalse(list.contains(17));
+    }
+
 
 
 }
