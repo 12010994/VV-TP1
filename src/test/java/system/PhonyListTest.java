@@ -37,45 +37,15 @@ public class PhonyListTest {
     //indexOf :OK
     //get :OK
     //set :OK
+    //isEmpty : OK
     //add : doing didi
+    //addAll : doing vic
     //remove
     //fastRemove
-    //addAll
-    //empty : doing didi
     //removeRange
     //rangeCheck
     //rangeCheckForAdd
     //removeAll
-
-    /**
-     * Tests the "isEmpty" method with an empty list.
-     *
-     * @see PhonyList#isEmpty()
-     * @type Functional
-     * @input []
-     * @oracle It must return true.
-     * @passed Yes
-     */
-    @Test
-    public void test_isEmptyTrue(){
-        assertTrue(list.isEmpty());
-    }
-
-    /**
-     * Tests the "isEmpty" method with a non-empty list.
-     *
-     * @see PhonyList#isEmpty()
-     * @type Functional
-     * @input [1]
-     * @oracle It must return false.
-     * @passed Yes
-     */
-    @Test
-    public void test_isEmptyFalse(){
-        list.add(1);
-        assertFalse(list.isEmpty());
-    }
-
 
     /**
      * Tests the "get" method with a one element list.
@@ -93,6 +63,7 @@ public class PhonyListTest {
         assertEquals("0", list.get(0).toString());
         assertEquals(Integer.class, list.get(0).getClass());
     }
+
 
     /**
      * Tests the "get" method with a 3 elements list.
@@ -179,7 +150,6 @@ public class PhonyListTest {
         list.set(0, new Integer(0));
     }
 
-
     /**
      * Tests the "addAll" method, with an insertion of a list in a list
      *
@@ -201,5 +171,35 @@ public class PhonyListTest {
         assertEquals("2", list.get(4).toString());
         assertEquals("3", list.get(5).toString());
         assertEquals(size, list.size());
+    }
+
+
+    /**
+     * Tests the "isEmpty" method with an empty list.
+     *
+     * @see PhonyList#isEmpty()
+     * @type Functional
+     * @input []
+     * @oracle It must return true.
+     * @passed Yes
+     */
+    @Test
+    public void isEmpty_TrueTest(){
+        assertTrue(list.isEmpty());
+    }
+
+    /**
+     * Tests the "isEmpty" method with a non-empty list.
+     *
+     * @see PhonyList#isEmpty()
+     * @type Functional
+     * @input [1]
+     * @oracle It must return false.
+     * @passed Yes
+     */
+    @Test
+    public void isEmpty_FalseTest(){
+        list.add(1);
+        assertFalse(list.isEmpty());
     }
 }
