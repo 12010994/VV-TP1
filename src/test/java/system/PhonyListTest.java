@@ -175,7 +175,7 @@ public class PhonyListTest {
      * @see PhonyList#set(int, Object)
      */
     @Test(expected = IndexOutOfBoundsException.class)
-    public void set_attemptToChangeNonExistentTest() {
+    public void set_attemptToChangeNonExistentElementTest() {
         list.set(0, new Integer(0));
     }
 
@@ -185,12 +185,12 @@ public class PhonyListTest {
      *
      * @type Functional
      * @input [0..10]
-     * @oracle
-     * @passed
+     * @oracle the obtained new list should see all it null elements replaced by the elements of the inserted list
+     * @passed No
      * @see PhonyList#addAll(int, java.util.Collection)
      */
     @Test
-    public void addAll_putAThreeElementListTest() {
+    public void addAll_putElementListTest() {
         PhonyList<Integer> listToAdd = list(1, 2, 3);
         list = list(54, 93, 16, null, null, null, 89, 22, 36, 30);
         PhonyList<Integer> listOracle = list(54, 93, 16, 1, 2, 3, 89, 22, 36, 30);
