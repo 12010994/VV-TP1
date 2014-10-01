@@ -40,7 +40,7 @@ public class PhonyListTest {
     set :OK - Bug: corrected
     isEmpty : OK
     add : doing didi
-    addAll : doing vic
+    addAll : OK
     remove : doing
     fastRemove : doing
     contains : OK
@@ -178,7 +178,7 @@ public class PhonyListTest {
      *
      * @type Functional
      * @input [54,93,16,null,17,null,89,22,36,30] & [1,2,3]
-     * @oracle the obtained new list must be the "listOracle" list
+     * @oracle the obtained new list must be the same than the "listOracle"
      * @passed Yes
      * @see PhonyList#addAll(int, java.util.Collection)
      */
@@ -196,8 +196,6 @@ public class PhonyListTest {
             }
             i++;
         }
-
-        //TODO verify with oracle
         assertEquals("1", list.get(3).toString());
         assertEquals("2", list.get(4).toString());
         assertEquals("3", list.get(5).toString());
@@ -211,7 +209,7 @@ public class PhonyListTest {
      * @see PhonyList#isEmpty()
      * @type Functional
      * @input []
-     * @oracle It must return true.
+     * @oracle The list is empty, it must return true.
      * @passed Yes
      */
     @Test
@@ -225,7 +223,7 @@ public class PhonyListTest {
      * @see PhonyList#isEmpty()
      * @type Functional
      * @input [1]
-     * @oracle It must return false.
+     * @oracle The list contains one element, it must return false.
      * @passed Yes
      */
     @Test
@@ -238,6 +236,7 @@ public class PhonyListTest {
      * Test the "contains" method
      * @see system.PhonyList#contains(Object)
      * @type Functional
+     * @oracle The list contains one element, it must return false.
      * @passed Yes
      */
     @Test
@@ -255,9 +254,10 @@ public class PhonyListTest {
      * @see PhonyList#add(Object)
      * @type Functional
      * @input [1..5]
-     * @oracle the size list is increment after add
+     * @oracle the obtained list size must be incremented by one after one add
      * @passed Yes
      **/
+    @Test
     public void add_SizeIncrementTest(){
         list = list(18, 62, 3, 84, 54);
         int size = list.size();
@@ -273,6 +273,7 @@ public class PhonyListTest {
      * @oracle find object who add in the list
      * @passed Yes
      **/
+    @Test
     public void add_FindObjectTest(){
         list = list(1,3,5,8);
         int index = list.size();
