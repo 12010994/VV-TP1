@@ -39,8 +39,8 @@ public class PhonyListTest {
     isEmpty : OK
     add : doing didi
     addAll : doing vic
-    remove
-    fastRemove
+    remove : doing
+    fastRemove : doing
     removeRange
     rangeCheck
     rangeCheckForAdd
