@@ -1,10 +1,7 @@
 package system;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Observable;
 
 import static org.junit.Assert.*;
 
@@ -33,19 +30,23 @@ public class PhonyListTest {
         list = new PhonyList<Integer>();
     }
 
-    //clear :OK
-    //indexOf :OK
-    //get :OK
-    //set :OK
-    //isEmpty : OK
-    //add : doing didi
-    //addAll : doing vic
-    //remove
-    //fastRemove
-    //removeRange
-    //rangeCheck
-    //rangeCheckForAdd
-    //removeAll
+    /*
+
+    clear :OK
+    indexOf :OK
+    get :OK
+    set :OK - Bug: corrected
+    isEmpty : OK
+    add : doing didi
+    addAll : doing vic
+    remove
+    fastRemove
+    removeRange
+    rangeCheck
+    rangeCheckForAdd
+    removeAll
+
+    */
 
     /**
      * Tests the "get" method with a one element list.
@@ -102,7 +103,7 @@ public class PhonyListTest {
      * @type Functional
      * @input [0] o=0
      * @oracle The obtained list must have one Integer of value 1
-     * @passed No
+     * @passed Yes
      * @see PhonyList#set(int, Object)
      */
     @Test
