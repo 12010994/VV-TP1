@@ -242,6 +242,40 @@ public class PhonyListTest {
         assertFalse(list.contains(17));
     }
 
+    /**
+     * Tests the "add" method with a size list.
+     *
+     * @see PhonyList#add(Object)
+     * @type Functional
+     * @input [1..5]
+     * @oracle the size list is increment after add
+     * @passed Yes
+     **/
+    public void add_SizeIncrementTest(){
+        list = list(18, 62, 3, 84, 54);
+        int size = list.size();
+        list.add(85);
+        assertEquals(6, list.size());
+    }
+    /**
+     * Tests the "add" method with .
+     *
+     * @see PhonyList#add(Object)
+     * @type Functional
+     * @input [1..4]
+     * @oracle find object who add in the list
+     * @passed Yes
+     **/
+    public void add_FindObjectTest(){
+        list = list(1,3,5,8);
+        int index = list.size();
+        list.add(50);
+        assertEquals("50", list.get(4).toString());
+        assertEquals("1", list.get(0).toString());
+        assertEquals("3", list.get(1).toString());
+
+    }
+
 
 
 }
