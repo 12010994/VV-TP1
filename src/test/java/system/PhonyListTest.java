@@ -76,21 +76,21 @@ public class PhonyListTest {
      */
     @Test
     public void testIndexOf() {
-        PhonyList<Object> phonyArray = new PhonyList<>();
+        PhonyList<Object> phonyList = new PhonyList<>();
         String str1 = new String("Helloworld");
-        phonyArray.add("0");
-        phonyArray.add("1");
-        phonyArray.add("2");
-        phonyArray.add(str1);
-        assertEquals(phonyArray.indexOf(str1)==3, true);
+        phonyList.add("0");
+        phonyList.add("1");
+        phonyList.add("2");
+        phonyList.add(str1);
+        assertEquals(phonyList.indexOf(str1)==3, true);
 
         String str2 = str1;
-        phonyArray.add(str2);
-        assertEquals(phonyArray.indexOf(str2)==3, true);
+        phonyList.add(str2);
+        assertEquals(phonyList.indexOf(str2)==3, true);
 
-        phonyArray.remove(str1);
-        phonyArray.remove("0");
-        assertEquals(phonyArray.indexOf(str2)==2, true);
+        phonyList.remove(str1);
+        phonyList.remove("0");
+        assertEquals(phonyList.indexOf(str2)==2, true);
     }
 
     /**
@@ -383,14 +383,14 @@ public class PhonyListTest {
      **/
     @Test
     public void Remove_ObjectTest() {
-        PhonyList<Object> phonyArray = new PhonyList<>();
+        PhonyList<Object> phonyList = new PhonyList<>();
 
-        phonyArray.add("1");
-        phonyArray.add("2");
-        int oldSize = phonyArray.size();
-        phonyArray.remove("1");
+        phonyList.add("1");
+        phonyList.add("2");
+        int oldSize = phonyList.size();
+        phonyList.remove("1");
 
-        assertEquals(oldSize-1, phonyArray.size());
+        assertEquals(oldSize-1, phonyList.size());
 
     }
 
@@ -428,7 +428,7 @@ public class PhonyListTest {
         assertEquals(list.size(), 3);
 
     }
-    
+
     /**
      * Tests the "removeAll" method
      *
@@ -488,6 +488,7 @@ public class PhonyListTest {
         assertEquals(listOracle.size(), list.size());
     }
 
+ 
 
 
 
