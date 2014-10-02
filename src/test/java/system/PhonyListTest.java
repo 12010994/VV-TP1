@@ -282,6 +282,22 @@ public class PhonyListTest {
         list.add(85);
         assertEquals(6, list.size());
     }
+
+    /**
+     * Tests the "add" method with an add of a null element
+     *
+     * @see PhonyList#add(Object)
+     * @type Functional
+     * @input [Null]
+     * @oracle the obtained list must be of size 1
+     * @passed Yes
+     **/
+    @Test
+    public void add_NullElementTest(){
+        list.add(null);
+        assertEquals(1, list.size());
+    }
+
     /**
      * Tests the "add" method with .
      *
