@@ -188,7 +188,7 @@ public class PhonyListTest {
     public void addAll_putEmptyListInListTest() {
         PhonyList<Integer> listToAdd = new PhonyList<>();
         list.addAll(0, listToAdd);
-        assertEquals(listToAdd.size(),list.size());
+        assertEquals(listToAdd.size(), list.size());
     }
 
     /**
@@ -299,7 +299,7 @@ public class PhonyListTest {
     }
 
     /**
-     * Tests the "add" method with .
+     * Tests the "add" method with a simple example
      *
      * @see PhonyList#add(Object)
      * @type Functional
@@ -322,32 +322,62 @@ public class PhonyListTest {
      * Tests the "removeAll" method
      *
      * @type Functional
+     * @input
+     * @oracle
+     * @passed No
+     * @see PhonyList#removeAll(java.util.Collection)
+     */
+    @Test
+    public void removeAll_SimpleTest() {
+        PhonyList<Integer> listToRemove = list();
+        list = list(1,2,3);
+        System.out.println(list.size());
+        PhonyList<Integer> listOracle = list(1,2,3);
+        System.out.println(listOracle.size());
+        System.out.println(listToRemove.size());
+
+        list.removeAll(listToRemove);
+        System.out.println(list.size());
+        for(Object elemList: list){
+            for(Integer elemDeleted: listToRemove){
+                if (elemList!=null && elemDeleted!=null) {
+                    assertNotEquals(elemList.toString(), elemDeleted.toString());
+                }
+            }
+        }
+        assertFalse(list.contains(listToRemove));
+        assertEquals(list.size(),listOracle.size());
+    }
+
+    /**
+     * Tests the "removeAll" method
+     *
+     * @type Functional
      * @input [54, 93, 16, null, 17, null, 89, 22, 36, 30] & [1,93,22,30]
      * @oracle the obtained list must be empty
      * @passed No
      * @see PhonyList#removeAll(java.util.Collection)
      */
     @Test
-    public void removeAll_Test() {
+    public void removeAll_AdvancedTest() {
         PhonyList<Integer> listToRemove = list(1, 93, 22, 30);
         list = list(54, 93, 16, null, 17, null, 89, 22, 36, 30);
         PhonyList<Integer> listOracle = list(54, 16, null, 17, null, 89, 36);
 
-        int size = list.size();
         list.removeAll(listToRemove);
-        int newSize = list.size();
 
         for(Object elemList: list){
-            if (elemList!=null) {
-                for(Integer elemDeleted: listToRemove){
-                    assertNotEquals(elemList.toString(), elemDeleted.toString() );
+            for(Integer elemDeleted: listToRemove){
+                if (elemList!=null && elemDeleted!=null) {
+                    assertNotEquals(elemList.toString(), elemDeleted.toString());
                 }
             }
         }
-        assertEquals(listOracle.size(),size-newSize);
+        assertFalse(list.contains(listOracle));
+        assertEquals(listOracle.size(), list.size());
     }
 
-   /**
+    /**
      * Test the method "size" on a list before and after adds
      * @see system.PhonyList#size()
      * @type Functional
@@ -365,7 +395,7 @@ public class PhonyListTest {
 
     }
 
-   /**
+    /**
      * Test "remove" method to observe the list size
      * @see system.PhonyList#remove(int)
      * @type Functional

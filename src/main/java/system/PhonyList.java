@@ -448,14 +448,14 @@ public class PhonyList<E> extends AbstractList<E> implements List<E> {
                 System.arraycopy(elementData, r, elementData, w, size - r);
                 w += size - r;
             }
-            if(w == size){
-            //if (w != size) {
+            //if(w == size){
+            if (w != size) {
                 // clear to let GC do its work
                 for (int i = w; i < size; i++)
                     elementData[i] = null;
                 modCount += size - w;
-                //size = w;
-                size -= w;
+                size = w;
+                //size -= w;
                 modified = true;
             }
         }
