@@ -334,5 +334,23 @@ public class PhonyListTest {
 
     }
 
+   /**
+     * Test method for remove
+     * @see system.PhonyList#remove(int)
+     * @type Functional
+     * @input Object
+     * @oracle Must return "true"
+     * @passed yes
+    **/
+    @Test
+    public void Remove_SizeTest() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.remove(1);
+
+        assertEquals(2, list.size());
+    }
+
 
 }
