@@ -176,6 +176,22 @@ public class PhonyListTest {
     }
 
     /**
+     * Tests the "addAll" method, with an insertion of a empty list in a list
+     *
+     * @type Functional
+     * @input [] o=0
+     * @oracle the obtained list must be of size 0
+     * @passed Yes
+     * @see PhonyList#addAll(int, java.util.Collection)
+     */
+    @Test
+    public void addAll_putEmptyListInListTest() {
+        PhonyList<Integer> listToAdd = new PhonyList<>();
+        list.addAll(0, listToAdd);
+        assertEquals(listToAdd.size(),list.size());
+    }
+
+    /**
      * Tests the "addAll" method, with an insertion of a list in a list
      *
      * @type Functional
