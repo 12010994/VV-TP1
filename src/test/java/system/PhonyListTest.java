@@ -305,8 +305,6 @@ public class PhonyListTest {
         list.removeAll(listToRemove);
         int newSize = list.size();
 
-        System.out.println(list.toString());
-
         for(Object elemList: list){
             if (elemList!=null) {
                 for(Integer elemDeleted: listToRemove){
@@ -335,21 +333,26 @@ public class PhonyListTest {
     }
 
    /**
-     * Test method for remove
+     * Test "remove" method to observe the list size
      * @see system.PhonyList#remove(int)
      * @type Functional
-     * @input Object
-     * @oracle Must return "true"
-     * @passed yes
+     * @input [1,2,3,4]
+     * @oracle The length of the new list must be decremented by one
+     * @passed Yes
     **/
     @Test
     public void Remove_SizeTest() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.remove(1);
 
-        assertEquals(2, list.size());
+        Integer i = new Integer(4);
+        int oracleSize = 3;
+
+        list = list(1,2,3);
+        list.add(i);
+        int oldSize = list.size();
+        list.remove(i);
+
+        assertEquals(oracleSize, list.size());
+        assertEquals(oracleSize, oldSize-1);
     }
 
 

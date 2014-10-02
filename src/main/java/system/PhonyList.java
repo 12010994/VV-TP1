@@ -443,7 +443,7 @@ public class PhonyList<E> extends AbstractList<E> implements List<E> {
                     elementData[w++] = elementData[r];
         } finally {
             // Preserve behavioral compatibility with AbstractCollection,
-            // even if c.contains() throws.
+            // even if c.contains() throws
             if (r != size) {
                 System.arraycopy(elementData, r, elementData, w, size - r);
                 w += size - r;
