@@ -488,6 +488,25 @@ public class PhonyListTest {
         assertEquals(listOracle.size(), list.size());
     }
 
+   /**
+     * Tests the "removeRange" method, Elements that removes between 2 indexes
+     *
+     * @type Functional
+     * @input [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+     * @oracle The new list
+     * @passed Yes
+     * @see PhonyList#removeRange(int, int)
+     * */
+    @Test
+    public void removeRange_Test(){
+        list = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+        assertEquals(list.size(), 15);
+        list.removeRange(5, 10);
+        assertEquals(list.size(), 10);
+        assertEquals(list.get(5).toString(), "11");
+
+    }
+
  
 
 
