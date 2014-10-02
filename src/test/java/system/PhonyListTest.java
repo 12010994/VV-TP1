@@ -42,8 +42,8 @@ public class PhonyListTest {
     isEmpty : OK
     add : doing didi
     addAll : OK
-    remove : doing
-    fastRemove : doing
+    remove : OK
+    fastRemove : OK
     contains : OK
     size : OK
     removeRange
@@ -340,7 +340,7 @@ public class PhonyListTest {
      * @input [1,2,3,4]
      * @oracle The length of the new list must be decremented by one
      * @passed Yes
-    **/
+     **/
     @Test
     public void Remove_SizeTest() {
 
@@ -354,7 +354,13 @@ public class PhonyListTest {
 
         assertEquals(oracleSize, list.size());
         assertEquals(oracleSize, oldSize-1);
+
+        assertEquals(list.get(0).toString(), "1");
+        list.remove(null);
+        assertEquals(list.size(),3);
+
     }
+
 
 
 }
