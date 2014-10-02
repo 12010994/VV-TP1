@@ -40,8 +40,8 @@ public class PhonyListTest {
     get :OK
     set :OK - Bug: corrected
     isEmpty : OK
-    add : doing didi
-    addAll : OK
+    add : OK
+    addAll : OK pas à 100%
     remove : OK
     fastRemove : OK
     contains : OK
@@ -52,6 +52,46 @@ public class PhonyListTest {
     removeAll : Doing - Bug: not fixed
 
     */
+    /**
+     * Test method for {@link system.PhonyList#clear()}.
+     */
+    @Test
+    public void clear_Test() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.clear();
+        assertEquals(0, list.size());
+    }
+
+    /**
+     * Tests lastIndexOf(). First test, add an string (the target) after 3 others and search its place (it must be 3).
+     * Add a clone, and check its place is the same. And remove 2 entries (the first and the original) and check the position is 2
+     * @see system.PhonyList#indexOf(Object)
+     * @type Functional
+     * @input String
+     * @oracle Must return "true"
+     * @passed yes
+     */
+    @Test
+    public void testIndexOf() {
+        PhonyList<Object> phonyArray = new PhonyList<>();
+        String str1 = new String("Helloworld");
+        phonyArray.add("0");
+        phonyArray.add("1");
+        phonyArray.add("2");
+        phonyArray.add(str1);
+        assertEquals(phonyArray.indexOf(str1)==3, true);
+
+        String str2 = str1;
+        phonyArray.add(str2);
+        assertEquals(phonyArray.indexOf(str2)==3, true);
+
+        phonyArray.remove(str1);
+        phonyArray.remove("0");
+        assertEquals(phonyArray.indexOf(str2)==2, true);
+    }
 
     /**
      * Tests the "get" method with a one element list.
@@ -157,6 +197,87 @@ public class PhonyListTest {
     }
 
     /**
+     * Tests the "isEmpty" method with an empty list.
+     *
+     * @see PhonyList#isEmpty()
+     * @type Functional
+     * @input []
+     * @oracle The list is empty, it must return true.
+     * @passed Yes
+     */
+    @Test
+    public void isEmpty_TrueTest(){
+        assertTrue(list.isEmpty());
+    }
+
+    /**
+     * Tests the "isEmpty" method with a non-empty list.
+     *
+     * @see PhonyList#isEmpty()
+     * @type Functional
+     * @input [1]
+     * @oracle The list contains one element, it must return false.
+     * @passed Yes
+     */
+    @Test
+    public void isEmpty_FalseTest(){
+        list.add(1);
+        assertFalse(list.isEmpty());
+    }
+
+    /**
+     * Tests the "add" method with a size list.
+     *
+     * @see PhonyList#add(Object)
+     * @type Functional
+     * @input [1..5]
+     * @oracle the obtained list size must be incremented by one after one add
+     * @passed Yes
+     **/
+    @Test
+    public void add_SizeIncrementTest(){
+        list = list(18, 62, 3, 84, 54);
+        int size = list.size();
+        list.add(85);
+        assertEquals(6, list.size());
+    }
+
+    /**
+     * Tests the "add" method with an add of a null element
+     *
+     * @see PhonyList#add(Object)
+     * @type Functional
+     * @input [Null]
+     * @oracle the obtained list must be of size 1
+     * @passed Yes
+     **/
+    @Test
+    public void add_NullElementTest(){
+        list.add(null);
+        assertEquals(1, list.size());
+    }
+
+    /**
+     * Tests the "add" method with a simple example
+     *
+     * @see PhonyList#add(Object)
+     * @type Functional
+     * @input [1..4]
+     * @oracle find object who add in the list
+     * @passed Yes
+     **/
+    @Test
+    public void add_FindObjectTest(){
+        list = list(1,3,5,8);
+        int index = list.size();
+        list.add(50);
+        assertEquals("50", list.get(4).toString());
+        assertEquals("1", list.get(0).toString());
+        assertEquals("3", list.get(1).toString());
+
+    }
+
+    /**
      * Tests the "addAll" method, with an insertion of a list in an empty list
      *
      * @type Functional
@@ -220,35 +341,59 @@ public class PhonyListTest {
         assertEquals(size+listToAdd.size(),list.size());
     }
 
-
     /**
-     * Tests the "isEmpty" method with an empty list.
-     *
-     * @see PhonyList#isEmpty()
+     * Test "remove" method to observe the list size
+     * @see system.PhonyList#remove(int)
      * @type Functional
-     * @input []
-     * @oracle The list is empty, it must return true.
+     * @input [1,2,3,4]
+     * @oracle The length of the new list must be decremented by one
      * @passed Yes
-     */
+     **/
     @Test
-    public void isEmpty_TrueTest(){
-        assertTrue(list.isEmpty());
+    public void Remove_SizeTest() {
+
+        Integer i = new Integer(4);
+        int oracleSize = 3;
+
+        list = list(1,2,3);
+        list.add(i);
+        int oldSize = list.size();
+        list.remove(i);
+
+        assertEquals(oracleSize, list.size());
+        assertEquals(oracleSize, oldSize-1);
+
+        assertEquals(list.get(0).toString(), "1");
+        list.remove(null);
+        assertEquals(list.size(),3);
+        list.add(null);
+        int index = list.size();
+        list.remove(null);
+        assertEquals(index-1, list.size());
+
     }
 
     /**
-     * Tests the "isEmpty" method with a non-empty list.
-     *
-     * @see PhonyList#isEmpty()
+     * Test "remove" method to observe the list size
+     * @see system.PhonyList#remove(Object)
      * @type Functional
-     * @input [1]
-     * @oracle The list contains one element, it must return false.
+     * @input [1,2,3,4]
+     * @oracle The length of the new list must be decremented by one
      * @passed Yes
-     */
+     **/
     @Test
-    public void isEmpty_FalseTest(){
-        list.add(1);
-        assertFalse(list.isEmpty());
+    public void Remove_ObjectTest() {
+        PhonyList<Object> phonyArray = new PhonyList<>();
+
+        phonyArray.add("1");
+        phonyArray.add("2");
+        int oldSize = phonyArray.size();
+        phonyArray.remove("1");
+
+        assertEquals(oldSize-1, phonyArray.size());
+
     }
+
 
     /**
      * Test the "contains" method
@@ -267,57 +412,23 @@ public class PhonyListTest {
     }
 
     /**
-     * Tests the "add" method with a size list.
-     *
-     * @see PhonyList#add(Object)
+     * Test the method "size" on a list before and after adds
+     * @see system.PhonyList#size()
      * @type Functional
-     * @input [1..5]
-     * @oracle the obtained list size must be incremented by one after one add
+     * @input [1,2,3]
+     * @oracle Size of the list must be equals to zero before adds, and 3 after
      * @passed Yes
-     **/
+     */
     @Test
-    public void add_SizeIncrementTest(){
-        list = list(18, 62, 3, 84, 54);
-        int size = list.size();
-        list.add(85);
-        assertEquals(6, list.size());
-    }
-
-    /**
-     * Tests the "add" method with an add of a null element
-     *
-     * @see PhonyList#add(Object)
-     * @type Functional
-     * @input [Null]
-     * @oracle the obtained list must be of size 1
-     * @passed Yes
-     **/
-    @Test
-    public void add_NullElementTest(){
-        list.add(null);
-        assertEquals(1, list.size());
-    }
-
-    /**
-     * Tests the "add" method with a simple example
-     *
-     * @see PhonyList#add(Object)
-     * @type Functional
-     * @input [1..4]
-     * @oracle find object who add in the list
-     * @passed Yes
-     **/
-    @Test
-    public void add_FindObjectTest(){
-        list = list(1,3,5,8);
-        int index = list.size();
-        list.add(50);
-        assertEquals("50", list.get(4).toString());
-        assertEquals("1", list.get(0).toString());
-        assertEquals("3", list.get(1).toString());
+    public void testSize() {
+        assertEquals(list.size(), 0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        assertEquals(list.size(), 3);
 
     }
-
+    
     /**
      * Tests the "removeAll" method
      *
@@ -377,72 +488,9 @@ public class PhonyListTest {
         assertEquals(listOracle.size(), list.size());
     }
 
-    /**
-     * Test the method "size" on a list before and after adds
-     * @see system.PhonyList#size()
-     * @type Functional
-     * @input [1,2,3]
-     * @oracle Size of the list must be equals to zero before adds, and 3 after
-     * @passed Yes
-     */
-    @Test
-    public void testSize() {
-        assertEquals(list.size(), 0);
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        assertEquals(list.size(), 3);
 
-    }
 
-    /**
-     * Test "remove" method to observe the list size
-     * @see system.PhonyList#remove(int)
-     * @type Functional
-     * @input [1,2,3,4]
-     * @oracle The length of the new list must be decremented by one
-     * @passed Yes
-     **/
-    @Test
-    public void Remove_SizeTest() {
 
-        Integer i = new Integer(4);
-        int oracleSize = 3;
-
-        list = list(1,2,3);
-        list.add(i);
-        int oldSize = list.size();
-        list.remove(i);
-
-        assertEquals(oracleSize, list.size());
-        assertEquals(oracleSize, oldSize-1);
-
-        assertEquals(list.get(0).toString(), "1");
-        list.remove(null);
-        assertEquals(list.size(),3);
-
-    }
-
-    /**
-     * Test "remove" method to observe the list size
-     * @see system.PhonyList#remove(Object)
-     * @type Functional
-     * @input [1,2,3,4]
-     * @oracle The length of the new list must be decremented by one
-     * @passed Yes
-     **/
-    @Test
-    public void Remove_ObjectTest() {
-        PhonyList<Object> phonyArray = new PhonyList<>();
-
-        phonyArray.add("1");
-        phonyArray.add("2");
-        int oldSize = phonyArray.size();
-        phonyArray.remove("1");
-
-        assertEquals(oldSize-1, phonyArray.size());
-
-    }
 
 
 
