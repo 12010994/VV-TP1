@@ -316,10 +316,11 @@ public class PhonyListTest {
     }
 
    /**
-     * Test the size of the list before and after adds
+     * Test the method "size" on a list before and after adds
      * @see system.PhonyList#size()
      * @type Functional
-     * @oracle Size equals zero before adds, and 3 after
+     * @input [1,2,3]
+     * @oracle Size of the list must be equals to zero before adds, and 3 after
      * @passed Yes
      */
     @Test
