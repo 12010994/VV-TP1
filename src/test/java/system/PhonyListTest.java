@@ -393,6 +393,27 @@ public class PhonyListTest {
 
     }
 
+    /**
+     * Test "remove" method to observe the list size
+     * @see system.PhonyList#remove(Object)
+     * @type Functional
+     * @input [1,2,3,4]
+     * @oracle The length of the new list must be decremented by one
+     * @passed Yes
+     **/
+    @Test
+    public void Remove_ObjectTest() {
+        PhonyList<Object> phonyArray = new PhonyList<>();
+
+        phonyArray.add("1");
+        phonyArray.add("2");
+        int oldSize = phonyArray.size();
+        phonyArray.remove("1");
+
+        assertEquals(oldSize-1, phonyArray.size());
+
+    }
+
 
 
 }
