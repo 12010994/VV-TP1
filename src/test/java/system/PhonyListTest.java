@@ -35,18 +35,20 @@ public class PhonyListTest {
 
     /*
 
-    clear : OK
-    indexOf : OK
-    get : OK
-    set : OK - Bug: fixed
+    clear :OK
+    indexOf :OK
+    get :OK
+    set :OK - Bug: corrected
     isEmpty : OK
     add : OK
     addAll : OK pas à 100%
-    remove : OK - Bug: fixed
+    remove : OK
     fastRemove : OK
     contains : OK
     size : OK
-    removeRange : OK
+    removeRange
+    rangeCheck
+    rangeCheckForAdd
     removeAll : Doing - Bug: not fixed
 
     */
@@ -291,7 +293,7 @@ public class PhonyListTest {
         assertEquals("1", list.get(0).toString());
         assertEquals("2", list.get(1).toString());
         assertEquals("3", list.get(2).toString());
-        assertEquals(listToAdd.size(),list.size());
+        assertEquals(listToAdd.size(), list.size());
     }
 
     /**
@@ -387,8 +389,9 @@ public class PhonyListTest {
         phonyList.add("2");
         int oldSize = phonyList.size();
         phonyList.remove("1");
-
         assertEquals(oldSize-1, phonyList.size());
+        phonyList.remove("5");
+        assertEquals(phonyList.size(), oldSize-1);
 
     }
 
@@ -428,11 +431,11 @@ public class PhonyListTest {
     }
 
     /**
-     * Tests the "removeAll" method in a simple test
+     * Tests the "removeAll" method
      *
      * @type Functional
-     * @input [1,2,3] []
-     * @oracle the obtained list must be the same
+     * @input
+     * @oracle
      * @passed No
      * @see PhonyList#removeAll(java.util.Collection)
      */
@@ -440,13 +443,13 @@ public class PhonyListTest {
     public void removeAll_SimpleTest() {
         PhonyList<Integer> listToRemove = list();
         list = list(1,2,3);
-        System.out.println(list.size());
+        //System.out.println(list.size());
         PhonyList<Integer> listOracle = list(1,2,3);
-        System.out.println(listOracle.size());
-        System.out.println(listToRemove.size());
+        //System.out.println(listOracle.size());
+        //System.out.println(listToRemove.size());
 
         list.removeAll(listToRemove);
-        System.out.println(list.size());
+        //System.out.println(list.size());
         for(Object elemList: list){
             for(Integer elemDeleted: listToRemove){
                 if (elemList!=null && elemDeleted!=null) {
@@ -466,7 +469,7 @@ public class PhonyListTest {
      * @oracle the obtained list must be empty
      * @passed No
      * @see PhonyList#removeAll(java.util.Collection)
-     */
+     **
     @Test
     public void removeAll_AdvancedTest() {
         PhonyList<Integer> listToRemove = list(1, 93, 22, 30);
@@ -486,7 +489,33 @@ public class PhonyListTest {
         assertEquals(listOracle.size(), list.size());
     }
 
-   /**
+    /**
+     * Tests the "addAll" method, with an insertion of a list in a list
+     *
+     * @type Functional
+     * @input [1,2,3] & [8,9]
+     * @oracle the obtained new list must be the same than the "listOracle"
+     * @passed Yes
+     * @see PhonyList#addAll(int, java.util.Collection)
+     */
+    @Test
+    public void addAll_CollectionTest(){
+        PhonyList<Object> phonyArray = new PhonyList<>();
+        phonyArray.add("1");
+        phonyArray.add("2");
+        phonyArray.add("3");
+        PhonyList<Object> test = new PhonyList<>();
+        test.add("8");
+        test.add("10");
+        test.add("5");
+        test.add("9");
+        assertEquals(phonyArray.size(), 3);
+        phonyArray.addAll(2, test);
+        System.out.println(phonyArray.toString());
+        assertEquals(phonyArray.get(2).toString(), "8");
+    }
+
+    /**
      * Tests the "removeRange" method, Elements that removes between 2 indexes
      *
      * @type Functional
@@ -504,11 +533,6 @@ public class PhonyListTest {
         assertEquals(list.get(5).toString(), "11");
 
     }
-
- 
-
-
-
 
 
 
