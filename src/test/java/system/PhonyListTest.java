@@ -35,20 +35,18 @@ public class PhonyListTest {
 
     /*
 
-    clear :OK
-    indexOf :OK
-    get :OK
-    set :OK - Bug: corrected
+    clear : OK
+    indexOf : OK
+    get : OK
+    set : OK - Bug: fixed
     isEmpty : OK
     add : OK
     addAll : OK pas à 100%
-    remove : OK
+    remove : OK - Bug: fixed
     fastRemove : OK
     contains : OK
     size : OK
-    removeRange
-    rangeCheck
-    rangeCheckForAdd
+    removeRange : OK
     removeAll : Doing - Bug: not fixed
 
     */
@@ -430,11 +428,11 @@ public class PhonyListTest {
     }
 
     /**
-     * Tests the "removeAll" method
+     * Tests the "removeAll" method in a simple test
      *
      * @type Functional
-     * @input
-     * @oracle
+     * @input [1,2,3] []
+     * @oracle the obtained list must be the same
      * @passed No
      * @see PhonyList#removeAll(java.util.Collection)
      */
