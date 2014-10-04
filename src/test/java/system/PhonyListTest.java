@@ -421,7 +421,7 @@ public class PhonyListTest {
      * @passed Yes
      */
     @Test
-    public void testSize() {
+    public void size_Test() {
         assertEquals(list.size(), 0);
         list.add(1);
         list.add(2);
