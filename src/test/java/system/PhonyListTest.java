@@ -3,6 +3,8 @@ package system;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -75,7 +77,7 @@ public class PhonyListTest {
      * @passed yes
      */
     @Test
-    public void testIndexOf() {
+    public void indexOf_Test() {
         PhonyList<Object> phonyList = new PhonyList<>();
         String str1 = new String("Helloworld");
         phonyList.add("0");
@@ -350,7 +352,7 @@ public class PhonyListTest {
      * @passed Yes
      **/
     @Test
-    public void Remove_SizeTest() {
+    public void remove_SizeTest() {
 
         Integer i = new Integer(4);
         int oracleSize = 3;
@@ -382,7 +384,7 @@ public class PhonyListTest {
      * @passed Yes
      **/
     @Test
-    public void Remove_ObjectTest() {
+    public void remove_ObjectTest() {
         PhonyList<Object> phonyList = new PhonyList<>();
 
         phonyList.add("1");
@@ -443,13 +445,8 @@ public class PhonyListTest {
     public void removeAll_SimpleTest() {
         PhonyList<Integer> listToRemove = list();
         list = list(1,2,3);
-        //System.out.println(list.size());
         PhonyList<Integer> listOracle = list(1,2,3);
-        //System.out.println(listOracle.size());
-        //System.out.println(listToRemove.size());
-
         list.removeAll(listToRemove);
-        //System.out.println(list.size());
         for(Object elemList: list){
             for(Integer elemDeleted: listToRemove){
                 if (elemList!=null && elemDeleted!=null) {
@@ -469,25 +466,27 @@ public class PhonyListTest {
      * @oracle the obtained list must be empty
      * @passed No
      * @see PhonyList#removeAll(java.util.Collection)
-     **
+     **/
     @Test
     public void removeAll_AdvancedTest() {
-        PhonyList<Integer> listToRemove = list(1, 93, 22, 30);
-        list = list(54, 93, 16, null, 17, null, 89, 22, 36, 30);
-        PhonyList<Integer> listOracle = list(54, 16, null, 17, null, 89, 36);
+        Collection<Integer> listToRemove = Arrays.asList(1, 93, 22, 30);
+        //Collection<Integer> listToRemove = list(1, 93, 22, 30);
+        list = list(54, 93, 16, null, 17, null, 89, 22, 36, 30, 11);
+        PhonyList<Integer> listOracle = list(54, 16, null, 17, null, 89, 36, 11);
 
         list.removeAll(listToRemove);
 
-        for(Object elemList: list){
-            for(Integer elemDeleted: listToRemove){
-                if (elemList!=null && elemDeleted!=null) {
-                    assertNotEquals(elemList.toString(), elemDeleted.toString());
-                }
-            }
-        }
-        assertFalse(list.contains(listOracle));
+//        for(Object elemList: list){
+//            for(Integer elemDeleted: listToRemove){
+//                if (elemList!=null && elemDeleted!=null) {
+//                    assertNotEquals(elemList.toString(), elemDeleted.toString());
+//                }
+//            }
+//        }
+        assertFalse(list.containsAll(listToRemove));
         assertEquals(listOracle.size(), list.size());
     }
+
 
     /**
      * Tests the "addAll" method, with an insertion of a list in a list
@@ -511,7 +510,6 @@ public class PhonyListTest {
         test.add("9");
         assertEquals(phonyArray.size(), 3);
         phonyArray.addAll(2, test);
-        System.out.println(phonyArray.toString());
         assertEquals(phonyArray.get(2).toString(), "8");
     }
 
