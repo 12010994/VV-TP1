@@ -476,6 +476,7 @@ public class PhonyListTest {
 
         list.removeAll(listToRemove);
 
+
 //        for(Object elemList: list){
 //            for(Integer elemDeleted: listToRemove){
 //                if (elemList!=null && elemDeleted!=null) {
